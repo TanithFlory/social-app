@@ -1,5 +1,5 @@
 import styled from "styled-components";
-const SRegistrationForm = styled.div`
+const SRegistrationForm = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;

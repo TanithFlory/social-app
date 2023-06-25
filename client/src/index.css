@@ -28,7 +28,7 @@
     #24213a,
     #24223b
   );
-
+  --clr-text2: #585468;
   /*font-sizes*/
   --fs-300: clamp(1.13rem, calc(1.08rem + 0.22vw), 1.25rem);
   --fs-400: clamp(1.69rem, calc(1.62rem + 0.33vw), 1.88rem);

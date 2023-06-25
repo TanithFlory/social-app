@@ -1,6 +1,6 @@
 import Registration from "./Components/Registration/Registration";
 import styled from "styled-components";
-
+import Home from "./Pages/Home";
 const RegistrationWrapper = styled.div`
   display: flex;
   align-items: center;
@@ -10,9 +10,10 @@ const RegistrationWrapper = styled.div`
 
 function App() {
   return (
-    <RegistrationWrapper>
-      <Registration />
-    </RegistrationWrapper>
+    // <RegistrationWrapper>
+    //   <Registration />
+    // </RegistrationWrapper>
+    <Home />
   );
 }
 

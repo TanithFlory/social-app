@@ -1,22 +1,55 @@
+import images from "../../Constants/images";
 import SNavbar from "./Navbar.styles";
+import { AiOutlineHome, AiOutlineUsergroupDelete } from "react-icons/ai";
+import { BiMessageSquareDetail } from "react-icons/bi";
+import { TbBuildingCommunity } from "react-icons/tb";
 
 const Navbar = () => {
   return (
     <SNavbar>
-      <div>
-        <img />
+      <div className="logo">
+        <img src={images.Logo} alt="logo" />
       </div>
       <div>
         <input type="text" placeholder="Search.." />
       </div>
-      <div>
+      <div className="nav-options">
         <label>General</label>
         <ul>
-          {["Home", "Messages", "Community", "Groups"].map((d, index) => {
-            return <li key={`nav-${index}`}>{d}</li>;
+          {[
+            {
+              navLink: "Home",
+              icon: <AiOutlineHome />,
+            },
+            {
+              navLink: "Messages",
+              icon: <BiMessageSquareDetail />,
+            },
+            {
+              navLink: "Community",
+              icon: <TbBuildingCommunity />,
+            },
+            {
+              navLink: "Groups",
+              icon: <AiOutlineUsergroupDelete />,
+            },
+          ].map((d, index) => {
+            return (
+              <li
+                key={`nav-${index}`}
+                className={`clickable ${!index ? "active" : ""}`}
+              >
+                <div>
+                  {d.icon}
+                  <span>{d.navLink}</span>
+                </div>
+              </li>
+            );
           })}
         </ul>
       </div>
     </SNavbar>
   );
 };
+
+export default Navbar;
