@@ -10,6 +10,9 @@ const SNavbar = styled.div`
   align-items: center;
   justify-content: flex-start;
   gap: 1rem;
+  padding-inline: 20px;
+  position: fixed;
+  left: 0;
   .logo {
     img {
       width: 150px;
@@ -18,6 +21,7 @@ const SNavbar = styled.div`
   }
   input,
   input:focus {
+    background-color: #2d2a40;
     outline: none;
     border: none;
     height: 50px;

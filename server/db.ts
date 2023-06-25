@@ -1,16 +1,11 @@
-import { MongoClient } from "mongodb";
+import mongoose from "mongoose";
 
 const mongoConnection = async () => {
   try {
-    const url: string = "mongodb://0.0.0.0:27017";
-    const client = new MongoClient(url);
-    await client.connect();
-
-    console.log("DB Connected");
-
-    const db = client.db("assignment");
-    const collection = db.collection("articleInsight");
-    return collection;
+    await mongoose.connect(
+      "mongodb+srv://thegrumpywizard123:rqKOY9pR1g5W4p76@cluster0.ec8gyfj.mongodb.net/atg-assignment"
+    );
+    console.log("Database Connected");
   } catch (err) {
     console.log(err);
   }

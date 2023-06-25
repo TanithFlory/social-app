@@ -1,13 +1,12 @@
-import nodemailer from "nodemailer";
 import { google } from "googleapis";
-
+import "dotenv/config";
+const nodemailer = require("nodemailer");
 const OAuth2 = google.auth.OAuth2;
 
 const createTransport = async () => {
   google.options({
     http2: true,
   });
-
   const email: string = process.env.OAUTH_EMAIL as string;
   const clientSecret: string = process.env.OAUTH_CLIENT_SECRET as string;
   const clientID: string = process.env.OAUTH_CLIENTID as string;
@@ -31,7 +30,8 @@ const createTransport = async () => {
     });
   });
   const transporter = nodemailer.createTransport({
-    service: "gogole",
+    host: "smtp.gmail.com",
+    port: "587",
     auth: {
       accessToken,
       type: "OAuth2",
@@ -51,7 +51,7 @@ const emailOtp = async (otp: number, email: string): Promise<void> => {
   try {
     const transporter = await createTransport();
     transporter.sendMail({
-      subject: "OTP Verification - Celebritree",
+      subject: "OTP Verification - Social-Website",
       text: "OTP",
       to: email,
       from: process.env.OAUTH_EMAIL,
@@ -65,7 +65,7 @@ const emailOtp = async (otp: number, email: string): Promise<void> => {
         border-radius: 15px;
       "
     >
-        Your otp is ${otp}
+        Your otp is <strong>${otp}</strong>
     </div>`,
     });
   } catch (err) {

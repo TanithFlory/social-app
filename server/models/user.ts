@@ -9,8 +9,9 @@ const usersSchema = new mongoose.Schema({
   userName: {
     type: String,
     required: true,
+    unique: true,
   },
-  password: {
+  pass: {
     type: String,
     default: null,
   },
@@ -19,11 +20,17 @@ const usersSchema = new mongoose.Schema({
     default: false,
   },
   otp: {
-    type: String,
+    type: Number,
   },
   otpExpiry: {
     type: Number,
   },
+  posts: [
+    {
+      title: String,
+      content: String,
+    },
+  ],
 });
 
 export const User = mongoose.model("User", usersSchema);

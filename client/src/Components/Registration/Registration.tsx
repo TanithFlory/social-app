@@ -1,6 +1,7 @@
 import SRegistration from "./Registration.styles";
 import image from "../../Constants/images.ts";
 import RegistrationForm from "./RegistrationForm";
+
 const Registration = () => {
   return (
     <SRegistration>

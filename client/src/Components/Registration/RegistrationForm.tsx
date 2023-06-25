@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import SRegistrationForm from "./RegistrationForm.styles";
 import axios from "axios";
+
 const RegistrationForm = () => {
   const [userDetails, setUserDetails] = useState({
     email: "",
@@ -30,7 +31,20 @@ const RegistrationForm = () => {
 
   const submitHandler = async (e: React.SyntheticEvent) => {
     e.preventDefault();
-    if (userDetails.email) {
+    if (signin) {
+      try {
+        const url = `${import.meta.env.VITE_BASE_URL}api/auth/sign-in`;
+        const response = await axios.post(url, {
+          userName: userDetails.userName,
+          pass: userDetails.pass,
+        });
+        localStorage.setItem("accessToken", response.data);
+        window.location.reload();
+      } catch (err) {
+        console.log(err);
+      }
+    }
+    if (!otp && !signin) {
       const url = `${import.meta.env.VITE_BASE_URL}api/auth/signup`;
       try {
         const response = await axios.post(url, userDetails);
@@ -40,14 +54,18 @@ const RegistrationForm = () => {
       } catch (err: unknown) {
         console.log(err);
       }
-    } else {
+    }
+
+    if (otp && !signin) {
       const url = `${import.meta.env.VITE_BASE_URL}api/auth/verify-otp`;
       try {
+        console.log(otp, userDetails.email);
         const response = await axios.post(url, {
           otp,
           email: userDetails.email,
         });
-        console.log(response);
+        localStorage.setItem("accessToken", response.data.message);
+        window.location.reload();
       } catch (err: unknown) {
         console.log(err);
       }
@@ -70,23 +88,23 @@ const RegistrationForm = () => {
               type="number"
               placeholder="OTP"
               required
-              pattern="^[\d]$"
-              min={6}
-              max={6}
+              pattern="[\d]{6,6}"
               onChange={otpHandler}
             />
           </>
         ) : (
           <>
-            <input
-              type="email"
-              pattern="^[\w\-.]+@([\w]{3,6}\.)+([\w]{2,5})$"
-              name="email"
-              onChange={onChangeHandler}
-              required
-              placeholder="Email"
-              data-display={signin && "none"}
-            />
+            {!signin && (
+              <input
+                type="email"
+                pattern="^[\w\-.]+@([\w]{3,6}\.)+([\w]{2,5})$"
+                name="email"
+                onChange={onChangeHandler}
+                required
+                placeholder="Email"
+                value={userDetails.email}
+              />
+            )}
             <input
               type="text"
               name="userName"
@@ -94,6 +112,7 @@ const RegistrationForm = () => {
               onChange={onChangeHandler}
               required
               placeholder="Username"
+              value={userDetails.userName}
             />
             <input
               type="password"
@@ -102,18 +121,20 @@ const RegistrationForm = () => {
               name="pass"
               onChange={onChangeHandler}
               placeholder="Password"
+              value={userDetails.pass}
             />
-            <input
-              type="password"
-              name="confirmPass"
-              required
-              onChange={onChangeHandler}
-              data-display={signin && "none"}
-              placeholder="Confirm Password"
-            />
+            {!signin && (
+              <input
+                type="password"
+                name="confirmPass"
+                onChange={onChangeHandler}
+                placeholder="Confirm Password"
+                value={userDetails.confirmPass}
+              />
+            )}
           </>
         )}
-        {error && <h5>Password doesn't match</h5>}
+        {error && !signin && <h5>Password doesn't match</h5>}
       </div>
       <div className="clickable">
         <span>Forgot password?</span>
