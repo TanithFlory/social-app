@@ -6,9 +6,11 @@ const SPostCard = styled.div`
   max-width: 600px;
   color: #c2b3b3;
   position: relative;
-  height: min-content;
+  height: 100%;
+  box-sizing: border-box;
   p {
     font-size: var(--fs-300);
+    text-align: justify;
   }
   h4 {
     margin: 1rem 0 0;
@@ -44,6 +46,10 @@ const SPostCard = styled.div`
   }
   .liked {
     fill: var(--clr-secondary);
+  }
+  @media screen and (max-width: 650px) {
+    padding: 40px 15px;
+    margin: 5px;
   }
 `;
 export default SPostCard;

@@ -12,7 +12,7 @@ const SHome = styled.div`
     margin-top: 3rem;
     & > h1 {
       color: var(--clr-text2);
-      margin: 2rem 0 0;
+      margin: 2rem 10px 0;
     }
   }
 `;

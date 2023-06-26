@@ -11,11 +11,15 @@ const SCreatePost = styled.div`
   margin: 3rem auto;
   h1 {
     margin: 0;
+    font-size: var(--fs-300);
   }
   form {
     display: flex;
     flex-direction: column;
     gap: 1rem;
+  }
+  label {
+    font-size: var(--fs-300);
   }
   input,
   input:focus {
@@ -24,11 +28,16 @@ const SCreatePost = styled.div`
     border-radius: 6px;
     padding-inline: 1rem;
     font-size: var(--fs-300);
-    color: var(--clr-white);
+    color: var(--clr-text3);
+
+    &::placeholder {
+      color: var(--clr-text3);
+    }
   }
+
   input,
   textarea {
-    background-color: #362a3d;
+    background-color: transparent;
     box-sizing: border-box;
     outline: none;
     border-bottom: 1px solid var(--clr-white);
@@ -38,9 +47,6 @@ const SCreatePost = styled.div`
     outline: none;
   }
 
-  input::placeholder {
-    color: var(--clr-white);
-  }
   textarea {
     height: 100%;
     width: 100%;
@@ -60,6 +66,14 @@ const SCreatePost = styled.div`
     font-weight: 700;
     font-size: var(--fs-300);
     padding: 10px;
+  }
+  @media screen and (max-width: 650px) {
+    padding: 20px 5px;
+    margin: 10px;
+    width: auto;
+    h1 {
+      text-align: center;
+    }
   }
 `;
 

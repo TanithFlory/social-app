@@ -122,6 +122,12 @@ const SCommentsModal = styled.div`
       }
     }
   }
+  @media screen and (max-width: 650px) {
+    & > div:first-child {
+      padding: 20px 0;
+      margin: 1rem auto;
+    }
+  }
 `;
 
 export default SCommentsModal;

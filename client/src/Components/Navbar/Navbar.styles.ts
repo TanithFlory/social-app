@@ -48,7 +48,7 @@ const SNavbar = styled.div<SProps>`
     flex-direction: column;
     align-items: center;
     label {
-      font-size: var(--fs-400);
+      font-size: var(--fs-300);
       width: 100%;
       padding-left: 1rem;
       color: var(--clr-text2);

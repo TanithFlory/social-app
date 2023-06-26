@@ -35,7 +35,7 @@ const postController: IPostController = {
   getAllPosts: async (_req, res) => {
     try {
       await mongoConnection();
-      const response = await Post.find({});
+      const response = await Post.find({}).sort({ date: -1 });
       return res.status(200).json(response);
     } catch (err: unknown) {
       console.log(err);
