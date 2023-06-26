@@ -8,7 +8,6 @@ const SCreatePost = styled.div`
   border-radius: 36px;
   padding: 20px;
   color: var(--clr-text3);
-  margin: 3rem auto;
   h1 {
     margin: 0;
     font-size: var(--fs-300);
