@@ -1,18 +1,25 @@
 import styled from "styled-components";
 
-const SNavbar = styled.div`
+interface SProps {
+  offscreen: number;
+}
+
+const SNavbar = styled.div<SProps>`
   background-image: var(--clr-gradient);
   max-width: 300px;
   border-radius: 0 36px 36px 0;
-  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
   gap: 1rem;
+  height: 100vh;
   padding-inline: 20px;
   position: fixed;
   left: 0;
+  z-index: 9998;
+  transition: 0.5s all ease-in-out;
+  transform: translateX(-${(props) => props.offscreen}px);
   .logo {
     img {
       width: 150px;

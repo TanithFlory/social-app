@@ -4,10 +4,11 @@ const SCreatePost = styled.div`
   background: var(--clr-gradient);
   width: 100%;
   max-width: 600px;
-  height: 480px;
+  height: auto;
   border-radius: 36px;
   padding: 20px;
   color: var(--clr-text3);
+  margin: 3rem auto;
   h1 {
     margin: 0;
   }
@@ -30,7 +31,8 @@ const SCreatePost = styled.div`
     background-color: #362a3d;
     box-sizing: border-box;
     outline: none;
-    border: 1px solid var(--clr-white);
+    border-bottom: 1px solid var(--clr-white);
+    color: var(--clr-text3);
   }
   textarea:focus {
     outline: none;

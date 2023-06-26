@@ -46,7 +46,7 @@ const CreatePost = () => {
             placeholder="Enter a title..."
             name="title"
             required
-            maxLength={18}
+            maxLength={25}
           />
         </div>
         <div className="post-content">

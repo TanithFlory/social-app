@@ -29,6 +29,14 @@ const postsSchema = new mongoose.Schema({
     type: [String],
     required: false,
   },
+  comments: {
+    type: [
+      {
+        comment: String,
+        commentBy: String,
+      },
+    ],
+  },
 });
 
 export const Post = mongoose.model("Post", postsSchema);

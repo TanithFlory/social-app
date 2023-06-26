@@ -25,4 +25,14 @@ const updateStats: RequestResponse = (req, res) => {
 };
 router.put("/update", updateStats);
 
+const addComment: RequestResponse = (req, res) => {
+  postController.addComment(req, res);
+};
+router.put("/add-comment", addComment);
+
+const getAllComments: RequestResponse = (req, res) => {
+  postController.getAllComments(req, res);
+};
+router.get("/get-comments", getAllComments);
+
 export default router;

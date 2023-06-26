@@ -10,6 +10,8 @@ export interface IPostController {
   getAllPosts(req: Request, res: Response): Promise<any>;
   deletePost(req: Request, res: Response): Promise<any>;
   updateStats(req: Request, res: Response): Promise<any>;
+  addComment(req: Request, res: Response): Promise<any>;
+  getAllComments(req: Request, res: Response): Promise<any>;
 }
 export interface IUserDetails {
   email: string;
@@ -19,6 +21,7 @@ export interface IUserDetails {
 
 export interface IJwt {
   _id: string;
+  userName: string;
 }
 
 export interface IPostDetails {
@@ -35,4 +38,9 @@ export type RequestResponse = (
 export interface ILoginDetails {
   userName: string;
   pass: string;
+}
+
+export interface IOtp {
+  email: string;
+  otp: number;
 }

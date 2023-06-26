@@ -13,7 +13,6 @@ const RegistrationForm = () => {
   const [signin, setSignin] = useState<boolean>();
   const [otpForm, setOtpForm] = useState<boolean>();
   const [otp, setOtp] = useState<number>();
-
   const onChangeHandler = (e: React.FormEvent<HTMLInputElement>) => {
     const target = e.target as HTMLInputElement;
     setUserDetails((prev) => {
@@ -59,7 +58,6 @@ const RegistrationForm = () => {
     if (otp && !signin) {
       const url = `${import.meta.env.VITE_BASE_URL}api/auth/verify-otp`;
       try {
-        console.log(otp, userDetails.email);
         const response = await axios.post(url, {
           otp,
           email: userDetails.email,
@@ -85,11 +83,12 @@ const RegistrationForm = () => {
           <>
             <h5>Enter the otp sent to {userDetails.email} </h5>
             <input
-              type="number"
+              type="text"
               placeholder="OTP"
               required
               pattern="[\d]{6,6}"
               onChange={otpHandler}
+              value={otp?.toString() || ""}
             />
           </>
         ) : (

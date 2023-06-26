@@ -1,4 +1,4 @@
-import { GiHamburgerMenu } from "react-icons/gi";
+import { BsThreeDots } from "react-icons/bs";
 import { useState } from "react";
 import SPostControls from "./PostControls.styles";
 import axios from "axios";
@@ -15,6 +15,7 @@ const PostControls = (props: IProps) => {
         },
       });
       document.getElementById(id)?.remove();
+      document.getElementsByClassName("comment-modal")[0]?.remove();
     } catch (err: unknown) {
       console.log(err);
     }
@@ -23,7 +24,7 @@ const PostControls = (props: IProps) => {
 
   return (
     <SPostControls onClick={() => setPostControls((prev) => !prev)}>
-      <GiHamburgerMenu className={postControls ? "active" : ""} />
+      <BsThreeDots className={postControls ? "active" : ""} />
       {postControls && (
         <div className="controls">
           <ul>

@@ -6,6 +6,7 @@ const SPostCard = styled.div`
   max-width: 600px;
   color: #c2b3b3;
   position: relative;
+  height: min-content;
   p {
     font-size: var(--fs-300);
   }
@@ -30,7 +31,9 @@ const SPostCard = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-top: 15px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+    gap: 5px;
     & > div:first-child {
       display: flex;
       gap: 15px;

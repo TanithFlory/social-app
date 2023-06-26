@@ -5,10 +5,10 @@ import AllPosts from "../Components/AllPosts/AllPosts";
 
 const SHome = styled.div`
   display: flex;
-  & > div:nth-child(2) {
+  & > div:nth-child(3) {
     width: 100%;
     max-width: 1200px;
-    margin: 0 auto 0 300px;
+    margin: 0 auto;
     margin-top: 3rem;
     & > h1 {
       color: var(--clr-text2);

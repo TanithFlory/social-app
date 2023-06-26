@@ -2,13 +2,14 @@ import { styled } from "styled-components";
 
 const SPostControls = styled.div`
   position: absolute;
-  top: 20px;
-  right: 20px;
+  top: 30px;
+  right: 43px;
   cursor: pointer;
   & > svg {
     transform: scale(2);
-    background-color: var(--clr-primary);
-    border-radius: 1px;
+    border-radius: 50%;
+    transition: 0.3s all ease-in-out;
+    padding: 2px;
     &:hover {
       background-color: var(--clr-secondary);
       color: var(--clr-white);
@@ -26,7 +27,8 @@ const SPostControls = styled.div`
     right: 23px;
     width: 100px;
     height: 75px;
-    border-radius: 4px;
+    border-radius: 9px;
+    overflow: hidden;
     ul {
       list-style: none;
       font-size: var(--fs-200);
@@ -53,7 +55,7 @@ const SPostControls = styled.div`
         height: 100%;
         &:hover {
           color: var(--clr-black);
-          background-color: var(--clr-white);
+          background-color: var(--clr-secondary);
         }
       }
     }

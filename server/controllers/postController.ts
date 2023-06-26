@@ -74,6 +74,31 @@ const postController: IPostController = {
       console.log(err);
     }
   },
+  addComment: async (req, res) => {
+    try {
+      await mongoConnection();
+      const { comment, id, commentBy } = req.body;
+      console.log(comment, id, commentBy);
+      await Post.updateOne(
+        { _id: id },
+        { $push: { comments: { comment, commentBy } } }
+      );
+      res.status(200).json({ message: "Done" });
+    } catch (err: unknown) {
+      console.log(err);
+    }
+  },
+
+  getAllComments: async (req, res) => {
+    try {
+      await mongoConnection();
+      const { id } = req.query;
+      const response = await Post.findOne({ _id: id }, { comments: 1, _id: 0 });
+      res.status(200).json({ response });
+    } catch (err: unknown) {
+      console.log(err);
+    }
+  },
 };
 
 export default postController;

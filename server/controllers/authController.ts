@@ -1,7 +1,7 @@
 import mongoConnection from "../db";
 import { encryptData, decryptData } from "../services/encryption";
 import emailOtp from "../services/emailService";
-import { IAuthController, IUserDetails, ILoginDetails } from "../types";
+import { IAuthController, IUserDetails, ILoginDetails, IOtp } from "../types";
 import { User } from "../models/user";
 import getAccessToken from "../helpers/getAccessToken";
 const authController: IAuthController = {
@@ -41,14 +41,15 @@ const authController: IAuthController = {
         }
       );
       return res.status(200).json({ message: "OK" });
-    } catch (err) {
-      res.status(500).json(err);
+    } catch (err: unknown) {
+      console.log(err);
+      res.status(500).json({ message: "Internal Server Error" });
     }
   },
 
   verifyOtp: async (req, res) => {
     try {
-      const { email, otp } = req.body;
+      const { email, otp }: IOtp = req.body;
       await mongoConnection();
       const response = await User.findOne({ email });
       if (!(otp === response?.otp)) {
@@ -69,6 +70,7 @@ const authController: IAuthController = {
       const dataStored = await User.findOne({ email });
       const accessToken = getAccessToken({
         _id: dataStored?._id.toString() as string,
+        userName: dataStored?.userName as string,
       });
       return res.status(200).json({
         message: accessToken,
@@ -100,6 +102,7 @@ const authController: IAuthController = {
       }
       const accessToken = getAccessToken({
         _id: _id.toString(),
+        userName,
       });
       res.status(200).json(accessToken);
     } catch (err) {

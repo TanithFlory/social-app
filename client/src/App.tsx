@@ -14,6 +14,7 @@ function App() {
   const [loggedIn, setLoggedIn] = useState({
     isLogged: false,
     _id: "",
+    userName: "",
   });
   useEffect(() => {
     const accessToken = localStorage.getItem("accessToken") as string;
@@ -22,6 +23,7 @@ function App() {
       setLoggedIn({
         isLogged: true,
         _id: jwtObject._id,
+        userName: jwtObject.userName,
       });
     }
   }, []);

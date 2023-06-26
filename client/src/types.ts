@@ -7,4 +7,14 @@ export interface IPostData {
   userName: string;
   likes: number;
   likedBy: string[];
+  comments: {
+    comment: string;
+    commentBy: string;
+  }[];
+}
+
+export interface IComment {
+  commentBy: string;
+  comment: string;
+  _id: string;
 }
