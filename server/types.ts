@@ -7,6 +7,9 @@ export interface IAuthController {
 }
 export interface IPostController {
   newPost(req: Request, res: Response): Promise<any>;
+  getAllPosts(req: Request, res: Response): Promise<any>;
+  deletePost(req: Request, res: Response): Promise<any>;
+  updateStats(req: Request, res: Response): Promise<any>;
 }
 export interface IUserDetails {
   email: string;
@@ -15,7 +18,7 @@ export interface IUserDetails {
 }
 
 export interface IJwt {
-  email: string;
+  _id: string;
 }
 
 export interface IPostDetails {

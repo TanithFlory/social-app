@@ -7,6 +7,7 @@ const SCreatePost = styled.div`
   height: 480px;
   border-radius: 36px;
   padding: 20px;
+  color: var(--clr-text3);
   h1 {
     margin: 0;
   }
@@ -17,11 +18,9 @@ const SCreatePost = styled.div`
   }
   input,
   input:focus {
-    outline: none;
-    border: none;
     height: 50px;
     width: 100%;
-    border-radius: 30px;
+    border-radius: 6px;
     padding-inline: 1rem;
     font-size: var(--fs-300);
     color: var(--clr-white);
@@ -29,24 +28,28 @@ const SCreatePost = styled.div`
   input,
   textarea {
     background-color: #362a3d;
-    border: 1px solid var(--clr-white);
     box-sizing: border-box;
+    outline: none;
+    border: 1px solid var(--clr-white);
   }
-  input:focus,
   textarea:focus {
-    outline: 3px solid var(--clr-white);
+    outline: none;
   }
+
   input::placeholder {
     color: var(--clr-white);
   }
   textarea {
     height: 100%;
     width: 100%;
-    min-height: 275px;
+    min-height: 225px;
     resize: none;
-    border-radius: 36px;
-    font-size: var(--fs-500);
+    border-radius: 6px;
+    font-size: var(--fs-400);
     padding: 15px;
+  }
+  label {
+    font-size: var(--fs-300);
   }
   button {
     border-radius: 36px;

@@ -13,7 +13,7 @@ const CreatePost = () => {
     e.preventDefault();
     try {
       await axios.post(`${import.meta.env.VITE_BASE_URL}api/post/new-post`, {
-        postedBy: loginContext.email,
+        postedBy: loginContext._id,
         ...formData,
       });
       window.location.reload();
@@ -21,7 +21,9 @@ const CreatePost = () => {
       console.log(err);
     }
   };
-  const changeHandler = (e: any) => {
+  const changeHandler = (
+    e: React.FormEvent<HTMLTextAreaElement> | React.FormEvent<HTMLInputElement>
+  ) => {
     const target = e.target as HTMLInputElement;
     setFormData((prev) => {
       return {
@@ -34,18 +36,22 @@ const CreatePost = () => {
     <SCreatePost>
       <form onSubmit={submitHandler}>
         <div>
-          <h1>Post something on your feed.</h1>
+          <h1>What's on your mind?</h1>
         </div>
-        <div>
+        <div className="post-title">
+          <label>Title</label>
           <input
             onChange={changeHandler}
             type="text"
             placeholder="Enter a title..."
             name="title"
+            required
+            maxLength={18}
           />
         </div>
-        <div>
-          <textarea onChange={changeHandler} name="content" />
+        <div className="post-content">
+          <label>Content</label>
+          <textarea required onChange={changeHandler} name="content" />
         </div>
         <button type="submit" className="clickable">
           Post

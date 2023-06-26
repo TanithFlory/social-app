@@ -66,9 +66,9 @@ const authController: IAuthController = {
           { $set: { emailVerified: true }, $unset: { otp: "", otpExpiry: "" } }
         );
       }
-
+      const dataStored = await User.findOne({ email });
       const accessToken = getAccessToken({
-        email,
+        _id: dataStored?._id.toString() as string,
       });
       return res.status(200).json({
         message: accessToken,
@@ -82,9 +82,8 @@ const authController: IAuthController = {
   signIn: async (req, res) => {
     try {
       const { userName, pass }: ILoginDetails = req.body;
-
       await mongoConnection();
-      const response = await User.findOne({ userName: userName });
+      const response = await User.findOne({ userName });
       if (!response) {
         return res.status(404).json({ message: "User doesn't exist! " });
       }
@@ -93,15 +92,14 @@ const authController: IAuthController = {
           message: "Email not verified, complete the signup process again. ",
         });
       }
-      console.log(response);
       const hashedPass = response.pass;
-      const email = response.email;
+      const { _id } = response;
       const verifyPass = await decryptData(pass, hashedPass);
       if (!verifyPass) {
         return res.status(401).json({ message: "Invalid Password" });
       }
       const accessToken = getAccessToken({
-        email,
+        _id: _id.toString(),
       });
       res.status(200).json(accessToken);
     } catch (err) {

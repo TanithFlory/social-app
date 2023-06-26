@@ -13,7 +13,7 @@ const RegistrationWrapper = styled.div`
 function App() {
   const [loggedIn, setLoggedIn] = useState({
     isLogged: false,
-    email: "",
+    _id: "",
   });
   useEffect(() => {
     const accessToken = localStorage.getItem("accessToken") as string;
@@ -21,7 +21,7 @@ function App() {
       const jwtObject = JSON.parse(atob(accessToken?.split(".")[1]));
       setLoggedIn({
         isLogged: true,
-        email: jwtObject.email,
+        _id: jwtObject._id,
       });
     }
   }, []);

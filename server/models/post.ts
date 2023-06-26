@@ -13,6 +13,22 @@ const postsSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  userName: {
+    type: String,
+    required: true,
+  },
+  date: {
+    type: Number,
+    required: true,
+  },
+  likes: {
+    type: Number,
+    required: false,
+  },
+  likedBy: {
+    type: [String],
+    required: false,
+  },
 });
 
 export const Post = mongoose.model("Post", postsSchema);

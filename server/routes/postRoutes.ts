@@ -10,4 +10,19 @@ const newPostHandler: RequestResponse = (req, res) => {
 };
 router.post("/new-post", newPostHandler);
 
+const getAllPostsHandler: RequestResponse = (req, res) => {
+  postController.getAllPosts(req, res);
+};
+router.get("/all-posts", getAllPostsHandler);
+
+const deletePost: RequestResponse = (req, res) => {
+  postController.deletePost(req, res);
+};
+router.delete("/remove", deletePost);
+
+const updateStats: RequestResponse = (req, res) => {
+  postController.updateStats(req, res);
+};
+router.put("/update", updateStats);
+
 export default router;

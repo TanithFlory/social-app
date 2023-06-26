@@ -1,37 +1,25 @@
+import axios from "axios";
 import SAllPosts from "./AllPosts.styles";
-import { useEffect } from "react";
-import { AiOutlineLike, AiOutlineComment } from "react-icons/ai";
+import { useCallback, useEffect, useState } from "react";
+import { IPostData } from "../../types";
+import PostCard from "./PostCard/PostCard";
 const AllPosts = () => {
-  useEffect(() => {}, []);
+  const [postData, setPostData] = useState<IPostData[]>();
+  const getData = useCallback(async () => {
+    const response = await axios.get(
+      `${import.meta.env.VITE_BASE_URL}api/post/all-posts`
+    );
+    setPostData(response.data);
+  }, []);
+  useEffect(() => {
+    getData();
+  }, [getData]);
+
   return (
     <SAllPosts>
-      <div className="post-wrapper">
-        <div>
-          <h3>Posted by</h3>
-        </div>
-        <div>
-          <p>
-            What is Lorem Ipsum? Lorem Ipsum is simply dummy text of the
-            printing and typesetting industry. Lorem Ipsum has been the
-            industry's standard dummy text ever since the 1500s, when an unknown
-            printer took a galley of type and scrambled it to make a type
-            specimen book. It has survived not only five centuries, but also the
-            leap into electronic typesetting, remaining essentially unchanged.
-            It was popularised in the 1960s with the release of Letraset sheets
-            containing Lorem Ipsum passages, and more recently with desktop
-            publishing software like Aldus PageMaker including versions of Lorem
-            Ipsum.
-          </p>
-        </div>
-        <div className="post-interactions">
-          <div>
-            <AiOutlineLike /> <span>Like</span>
-          </div>
-          <div>
-            <AiOutlineComment /> <span>Comment</span>
-          </div>
-        </div>
-      </div>
+      {postData?.map((post) => {
+        return <PostCard post={post} key={post._id} />;
+      })}
     </SAllPosts>
   );
 };

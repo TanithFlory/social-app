@@ -7,7 +7,7 @@ const SHome = styled.div`
   display: flex;
   & > div:nth-child(2) {
     width: 100%;
-    max-width: 1000px;
+    max-width: 1200px;
     margin: 0 auto 0 300px;
     margin-top: 3rem;
     & > h1 {
