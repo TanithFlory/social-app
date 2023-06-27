@@ -32,7 +32,7 @@ const createTransport = async () => {
   });
   const transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
-    port: "587",
+    port: "465",
     auth: {
       accessToken,
       type: "OAuth2",
