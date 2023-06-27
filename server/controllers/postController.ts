@@ -99,6 +99,17 @@ const postController: IPostController = {
       console.log(err);
     }
   },
+  updatePost: async (req, res) => {
+    try {
+      const { _id, content, title } = req.body;
+      await mongoConnection();
+
+      await Post.updateOne({ _id }, { $set: { content, title } });
+      res.status(200).json({ message: "Done" });
+    } catch (err: unknown) {
+      console.log(err);
+    }
+  },
 };
 
 export default postController;

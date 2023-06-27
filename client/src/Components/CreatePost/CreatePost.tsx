@@ -47,11 +47,17 @@ const CreatePost = () => {
             name="title"
             required
             maxLength={25}
+            value={formData.title}
           />
         </div>
         <div className="post-content">
           <label>Content</label>
-          <textarea required onChange={changeHandler} name="content" />
+          <textarea
+            required
+            onChange={changeHandler}
+            name="content"
+            value={formData.content}
+          />
         </div>
         <button type="submit" className="clickable">
           Post

@@ -35,4 +35,9 @@ const getAllComments: RequestResponse = (req, res) => {
 };
 router.get("/get-comments", getAllComments);
 
+const updatePost: RequestResponse = (req, res) => {
+  postController.updatePost(req, res);
+};
+router.put("/update-post", updatePost);
+
 export default router;

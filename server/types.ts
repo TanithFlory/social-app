@@ -14,6 +14,7 @@ export interface IPostController {
   updateStats(req: Request, res: Response): Promise<any>;
   addComment(req: Request, res: Response): Promise<any>;
   getAllComments(req: Request, res: Response): Promise<any>;
+  updatePost(req: Request, res: Response): Promise<any>;
 }
 export interface IUserDetails {
   email: string;

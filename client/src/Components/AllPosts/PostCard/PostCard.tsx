@@ -98,7 +98,7 @@ const PostCard = (props: IProps) => {
         )}
 
         {props.post.postedBy === loginContext._id && (
-          <PostControls postId={props.post._id} />
+          <PostControls post={props.post} />
         )}
       </SPostCard>
       {commentModal && (
