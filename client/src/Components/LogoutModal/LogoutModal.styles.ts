@@ -10,6 +10,8 @@ const SLogoutModal = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
   & > div {
     background: var(--clr-gradient);
     padding: 20px;

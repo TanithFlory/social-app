@@ -246,6 +246,8 @@ Error generating stack: `+i.message+`
   display: flex;
   align-items: center;
   justify-content: center;
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
   & > div {
     background: var(--clr-gradient);
     padding: 20px;
@@ -427,6 +429,9 @@ Error generating stack: `+i.message+`
   align-items: center;
   position: fixed;
   top: 0;
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  z-index: 9999;
   & > div {
     padding: 20px;
   }
@@ -535,6 +540,8 @@ Error generating stack: `+i.message+`
   background-color: rgba(0, 0, 0, 0.5);
   color: var(--clr-text3);
   z-index: 9999;
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
   & > div:first-child {
     background: var(--clr-gradient);
     padding: 20px;

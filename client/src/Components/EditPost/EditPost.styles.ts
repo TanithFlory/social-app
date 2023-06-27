@@ -9,6 +9,9 @@ const SEditPost = styled.div`
   align-items: center;
   position: fixed;
   top: 0;
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  z-index: 9999;
   & > div {
     padding: 20px;
   }

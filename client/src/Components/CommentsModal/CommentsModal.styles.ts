@@ -12,6 +12,8 @@ const SCommentsModal = styled.div`
   background-color: rgba(0, 0, 0, 0.5);
   color: var(--clr-text3);
   z-index: 9999;
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
   & > div:first-child {
     background: var(--clr-gradient);
     padding: 20px;
