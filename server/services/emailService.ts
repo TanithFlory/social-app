@@ -20,6 +20,7 @@ const createTransport = async () => {
   client.setCredentials({
     refresh_token: refreshToken,
   });
+  console.log(email);
   const accessToken = await new Promise((resolve, reject) => {
     client.getAccessToken((err, res) => {
       if (err) {
