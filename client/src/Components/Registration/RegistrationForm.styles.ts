@@ -43,7 +43,7 @@ const SRegistrationForm = styled.form`
     background: #2f6ce5;
     width: 100%;
     border-radius: 20px;
-    max-width: 175px;
+    max-width: 220px;
     height: 40px;
     margin: 19px 0;
     border: none;
@@ -57,9 +57,6 @@ const SRegistrationForm = styled.form`
     align-items: center;
     width: 100%;
     max-width: 420px;
-    & > div {
-      flex-basis: 25%;
-    }
   }
   h5 {
     margin: 0 0 1rem;
