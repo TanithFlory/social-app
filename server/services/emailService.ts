@@ -20,7 +20,6 @@ const createTransport = async () => {
   client.setCredentials({
     refresh_token: refreshToken,
   });
-  console.log(email);
   const accessToken = await new Promise((resolve, reject) => {
     client.getAccessToken((err, res) => {
       if (err) {
@@ -31,8 +30,7 @@ const createTransport = async () => {
     });
   });
   const transporter = nodemailer.createTransport({
-    host: "smtp.gmail.com",
-    port: "465",
+    service: "gmail",
     auth: {
       accessToken,
       type: "OAuth2",
