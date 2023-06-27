@@ -61,12 +61,11 @@ const authController: IAuthController = {
           message: "The otp has expired, please resend another one. ",
         });
       }
-      if (otp === response?.otp) {
-        await User.updateOne(
-          { email },
-          { $set: { emailVerified: true }, $unset: { otp: "", otpExpiry: "" } }
-        );
-      }
+      await User.updateOne(
+        { email },
+        { $set: { emailVerified: true }, $unset: { otp: "", otpExpiry: "" } }
+      );
+
       const dataStored = await User.findOne({ email });
       const accessToken = getAccessToken({
         _id: dataStored?._id.toString() as string,
@@ -108,6 +107,55 @@ const authController: IAuthController = {
     } catch (err) {
       console.log(err);
       res.status(500).json({ message: "Internal Server Error!" });
+    }
+  },
+
+  forgotPassOtp: async (req, res) => {
+    try {
+      const { email } = req.body;
+      await mongoConnection();
+
+      const response = await User.findOne({ email });
+      if (!response) {
+        return res.status(404).json({ message: "User not found!" });
+      }
+      const otp = Math.floor(Math.random() * 600000) + 100000;
+      await emailOtp(otp, email);
+
+      await User.updateOne(
+        { email },
+        {
+          $set: { otp, otpExpiry: Date.now() + 600000 },
+        }
+      );
+
+      res.status(200).json({ message: "Done" });
+    } catch (err: unknown) {
+      console.log(err);
+    }
+  },
+
+  forgotPassReset: async (req, res) => {
+    try {
+      await mongoConnection();
+      const { email, otp, pass } = req.body;
+      const response = await User.findOne({ email });
+      if (!(Number(otp) === response?.otp)) {
+        return res.status(409).json({ message: "Invalid OTP" });
+      }
+
+      if (Date.now() > (response?.otpExpiry as number)) {
+        return res.status(401).json({
+          message: "The otp has expired, please resend another one. ",
+        });
+      }
+
+      const hashedPass = await encryptData(pass);
+      await User.updateOne({ email }, { $set: { pass: hashedPass } });
+      res.status(200).json({ message: "Done" });
+    } catch (err: unknown) {
+      console.log(err);
+      res.status(500).json({ message: "Internal Server Error" });
     }
   },
 };

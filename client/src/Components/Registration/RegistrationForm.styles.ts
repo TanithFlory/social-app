@@ -6,11 +6,16 @@ const SRegistrationForm = styled.form`
   justify-content: center;
   height: 100%;
   padding-inline: 15px;
+  gap: 1rem;
   input[data-display="none"] {
     display: none;
   }
   h1 {
     font-size: var(--fs-500);
+  }
+  h5 {
+    text-align: center;
+    color: lightgreen;
   }
   input,
   input:focus {

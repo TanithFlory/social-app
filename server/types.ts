@@ -4,6 +4,8 @@ export interface IAuthController {
   signUp(req: Request, res: Response): Promise<any>;
   verifyOtp(req: Request, res: Response): Promise<any>;
   signIn(req: Request, res: Response): Promise<any>;
+  forgotPassOtp(req: Request, res: Response): Promise<any>;
+  forgotPassReset(req: Request, res: Response): Promise<any>;
 }
 export interface IPostController {
   newPost(req: Request, res: Response): Promise<any>;
